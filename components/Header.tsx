@@ -1,12 +1,12 @@
 import React, { FC, useEffect, useState } from "react";
-import { FaMoon, FaSun } from "react-icons/fa";
+import { FaMoon, FaSun, FaUser, FaUserAlt } from "react-icons/fa";
 
 interface Props {
   toggleTheme: (theme: string) => void;
 }
 
 const Header: FC<Props> = ({ toggleTheme }) => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const [animationClass, setAnimationClass] = useState("fade-in");
 
   useEffect(() => {
@@ -22,27 +22,26 @@ const Header: FC<Props> = ({ toggleTheme }) => {
   };
 
   return (
-    <div className="bg-[#0e6e97] text-[#fff] h-[8vh] max-h-[8vh]">
+    <div className={`${darkMode ? `bg-[#000]` : `bg-[#0e6e97]`} text-[#fff] max-h-[8vh] h-[8vh]`}>
       <div className="w-[80vw] mx-auto flex justify-between items-center py-3">
-        <h2 className="sofia text-[24px] font-semibold">Bume</h2>
-        <div className="flex items-center px-4 py-2 space-x-4 rounded-lg">
+        <h2 className="text-[24px] font-semibold">Bume</h2>
+        <div className="flex items-center space-x-6">
           {darkMode ? (
             <div
               onClick={toggleDarkMode}
               className={`flex cursor-pointer items-center space-x-3 ${animationClass}`}
             >
-              <FaSun />
-              <span className="text-[14px] font-semibold">Light</span>
+              <FaSun size={20} />
             </div>
           ) : (
             <div
               onClick={toggleDarkMode}
               className={`flex cursor-pointer items-center space-x-3 ${animationClass}`}
             >
-              <FaMoon />
-              <span className="text-[14px] font-semibold">Dark</span>
+              <FaMoon size={20} />
             </div>
           )}
+          <FaUserAlt size={20} />
         </div>
       </div>
     </div>

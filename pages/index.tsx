@@ -1,18 +1,19 @@
-import React, { useState } from 'react'
-import Header from "@/components/Header"
+import React, { useState } from "react";
+import Header from "@/components/Header";
+import Modes from "@/components/Modes";
 
 const Home = () => {
-  const [theme, setTheme] = useState("light")
+  const [theme, setTheme] = useState("dark");
   const toggleTheme = (theme: string) => {
-    setTheme(theme)
-  }
+    setTheme(theme);
+  };
   return (
     <div>
-      <Header toggleTheme={toggleTheme} />
-      <div className={theme === "light" ? `bg-[#fff] min-h-[92vh]` : `bg-[#0f1e24] text-[#fff] min-h-[92vh]`}>
-        <h1>Home</h1>
+      <div>
+        <Header toggleTheme={toggleTheme} />
+        <Modes theme={theme} />
       </div>
     </div>
-  )
-}
-export default Home
+  );
+};
+export default Home;
