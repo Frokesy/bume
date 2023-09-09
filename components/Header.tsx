@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { FaMoon, FaSun, FaUser, FaUserAlt } from "react-icons/fa";
+import { FaMoon, FaSun, FaUserAlt } from "react-icons/fa";
 
 interface Props {
   toggleTheme: (theme: string) => void;
@@ -23,7 +23,7 @@ const Header: FC<Props> = ({ toggleTheme }) => {
 
   return (
     <div className={`${darkMode ? `bg-[#000]` : `bg-[#0e6e97]`} text-[#fff] max-h-[8vh] h-[8vh]`}>
-      <div className="w-[80vw] mx-auto flex justify-between items-center py-3">
+      <div className="lg:w-[80vw] w-[90vw] mx-auto flex justify-between items-center py-3">
         <h2 className="text-[24px] font-semibold">Bume</h2>
         <div className="flex items-center space-x-6">
           {darkMode ? (

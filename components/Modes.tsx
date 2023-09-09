@@ -2,28 +2,31 @@ import { Canvas } from "@react-three/fiber";
 import React, { FC, Suspense, useEffect, useRef, useState } from "react";
 import Model from "@/components/Scene";
 import { Html, OrbitControls } from "@react-three/drei";
-import { gsap } from "gsap";
 
 interface Props {
   theme: string;
+  children: React.ReactNode;
 }
 
-const Modes:FC<Props> = ({ theme }) => {
-
+const Modes: FC<Props> = ({ theme, children }) => {
+  const [cursorBehaviour, setCursorBehaviour] = useState("grab");
   return (
-    <div className={`${theme === "light" ? `bg-[#fff]` : `bg-[#000] text-white`} h-[92vh] min-h-[92vh] w-[100vw]` }>
+    <div
+      className={`${
+        theme === "light" ? `bg-[#bee1ee]` : `bg-[#000] text-white`
+      } h-[92vh] min-h-[92vh] w-[100vw] cursor-${cursorBehaviour}`}
+      onMouseDown={() => setCursorBehaviour("grabbing")}
+      onMouseUp={() => setCursorBehaviour("grab")}
+    >
       <Canvas>
         <OrbitControls />
         <Suspense fallback={null}>
-          <Model />
+          <Model theme={theme} />
         </Suspense>
 
-        <Html>
-          <div className="absolute -top-[30vh] left-0 w-full h-full flex justify-center items-center">
-            <div className="flex flex-col items-center">
-              <h2 className="text-[24px] font-semibold">Bume</h2>
-              <p className="text-[14px]">3D Model</p>
-            </div>
+        <Html className="absolute inset-0 flex justify-center items-center -mt-[20vh]">
+          <div>
+            {children}
           </div>
         </Html>
       </Canvas>

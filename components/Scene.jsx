@@ -11,6 +11,12 @@ export default function Model(props) {
     groupRef.current.rotation.y += rotateXY;
   });
 
+  if (props.theme === 'dark') {
+    materials.star.color = { r: 0.5, g: 0.5, b: 0.5 }
+  } else {
+    materials.star.color = { r: 1, g: 1, b: 1 }
+  }
+
   useEffect(() => {
     setTimeout(() => {
       setRotateXY(0.001)
