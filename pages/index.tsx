@@ -9,12 +9,12 @@ const Bume = () => {
     setTheme(theme);
   };
   return (
-      <div className="select-none">
-        <Header toggleTheme={toggleTheme} />
-        <Modes theme={theme}>
-          <Home theme={theme} />
-        </Modes>
-      </div>
+        <div className="select-none">
+          <Header toggleTheme={toggleTheme} />
+          <Modes theme={theme}>
+            <Home theme={theme} />
+          </Modes>
+        </div>
   );
 };
 export default Bume;

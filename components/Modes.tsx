@@ -14,9 +14,9 @@ const Modes: FC<Props> = ({ theme, children }) => {
     <div
       className={`${
         theme === "light" ? `bg-[#bee1ee]` : `bg-[#000] text-white`
-      } h-[92vh] min-h-[92vh] w-[100vw] cursor-${cursorBehaviour}`}
-      onMouseDown={() => setCursorBehaviour("grabbing")}
-      onMouseUp={() => setCursorBehaviour("grab")}
+      } h-[92vh] min-h-[92vh] w-[100vw] ${cursorBehaviour}`}
+      onMouseDown={() => setCursorBehaviour("cursor-grabbing")}
+      onMouseUp={() => setCursorBehaviour("cursor-grab")}
     >
       <Canvas>
         <OrbitControls />
