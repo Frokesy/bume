@@ -1,14 +1,12 @@
 import React, { FC, useContext, useEffect } from "react";
 import { gsap } from "gsap";
-import { PageTransitionContext } from "@/context/PageTransitionContext";
-import Link from "next/link";
 
 interface HomeProps {
   theme: string;
+  onClick: Function;
 }
 
-const Home: FC<HomeProps> = ({ theme }) => {
-  const { timeline } = useContext(PageTransitionContext);
+const Home: FC<HomeProps> = ({ theme, onClick }) => {
 
   useEffect(() => {
     const tl = gsap.timeline();
@@ -29,7 +27,7 @@ const Home: FC<HomeProps> = ({ theme }) => {
     tl.from(".body", {
       opacity: 0,
       y: 100,
-      duration: 3,
+      duration: 2,
       ease: "ease-in",
     });
   }, []);
@@ -44,11 +42,9 @@ const Home: FC<HomeProps> = ({ theme }) => {
       </h2>
 
       <div className="mt-[5vh]">
-        <Link href="/login" passHref>
-          <button className="bg-[#2ba6d8] btn py-2 px-6 -skew-x-12 rounded-lg lg:text-[24px] text-[16px] font-bold text-[#fff]">
+          <button onClick={() => onClick("login")} className="bg-[#2ba6d8] btn py-2 px-6 -skew-x-12 rounded-lg lg:text-[24px] text-[16px] font-bold text-[#fff]">
             Get Started
           </button>
-        </Link>
       </div>
     </div>
   );

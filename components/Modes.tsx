@@ -25,9 +25,7 @@ const Modes: FC<Props> = ({ theme, children }) => {
         </Suspense>
 
         <Html className="absolute inset-0 flex justify-center items-center -mt-[20vh]">
-          <div>
-            {children}
-          </div>
+            <div>{children}</div>
         </Html>
       </Canvas>
     </div>
