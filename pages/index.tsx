@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Header from "@/components/Header";
 import Modes from "@/components/Modes";
 import Home from "@/components/Home";
-import Login from "./login";
 import { gsap } from "gsap";
+import Auth from "./auth";
 
 const Bume = () => {
   const [theme, setTheme] = useState("dark");
@@ -36,7 +36,7 @@ const Bume = () => {
             <Home theme={theme} onClick={handleScreenChange} />
           </div>
         ) : (
-          <Login onClick={handleScreenChange} />
+          <Auth onClick={handleScreenChange} />
         )}
       </Modes>
     </div>
