@@ -1,12 +1,45 @@
 import InputField from "@/components/InputField";
+import { handleLogin, handleSignup } from "@/utils/authFunc";
+import { supabase } from "@/utils/supabaseClient";
 import { gsap } from "gsap";
 import React, { FC, useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface ComponentProps {
   onClick: Function;
 }
 const Auth: FC<ComponentProps> = ({ onClick }) => {
   const [activeTab, setActiveTab] = useState("signup");
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+    fullName: "",
+  });
+  const [error, setError] = useState({
+    email: "",
+    password: "",
+    fullName: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+
+  // const router = useRouter()
+
+  const validateField = (value: any) => {
+    if (value === "") {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  const validatePassword = (password: string) => {
+    const passwordRegex =
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{6,}$/;
+    return passwordRegex.test(password);
+  };
 
   const tabs = ["login", "signup"];
 
@@ -51,7 +84,73 @@ const Auth: FC<ComponentProps> = ({ onClick }) => {
       });
     }
   };
-  // setCurrentScreen("login");
+
+  const handleSubmit = async (activeTab: string) => {
+    if (activeTab === "login") {
+      setLoading(true);
+      const isEmailValid = validateField(userData.email);
+      const isPasswordValid = userData.password.length >= 6;
+
+      setError({
+        email: isEmailValid ? "" : "Email is required",
+        password: isPasswordValid
+          ? ""
+          : "Password must be at least 6 characters",
+        fullName: "",
+      });
+
+      if (isEmailValid && isPasswordValid) {
+        return true;
+      } else {
+        setLoading(false);
+        if (!isEmailValid) {
+          setTimeout(() => {
+            setError((prevState) => ({ ...prevState, email: "" }));
+          }, 3000);
+        }
+        if (!isPasswordValid) {
+          setTimeout(() => {
+            setError((prevState) => ({ ...prevState, password: "" }));
+          }, 3000);
+        }
+      }
+    } else if (activeTab === "signup") {
+      setLoading(true);
+
+      const isFullnameValid = validateField(userData.fullName);
+      const isEmailValid = validateField(userData.email);
+      const isPasswordValid = validatePassword(userData.password);
+
+      setError({
+        fullName: isFullnameValid ? "" : "fullname is required",
+        email: isEmailValid ? "" : "Email is required",
+        password: isPasswordValid
+          ? ""
+          : "Password must be at least 6 character with at least 1 lowercase, 1 uppercase, 1 digit and 1 special case",
+      });
+
+      if (isFullnameValid && isEmailValid && isPasswordValid) {
+        return true
+      } else {
+        setLoading(false);
+        if (!isFullnameValid) {
+          setTimeout(() => {
+            setError((prevState) => ({ ...prevState, fullName: "" }));
+          }, 3000);
+        }
+        if (!isEmailValid) {
+          setTimeout(() => {
+            setError((prevState) => ({ ...prevState, email: "" }));
+          }, 3000);
+        }
+        if (!isPasswordValid) {
+          setTimeout(() => {
+            setError((prevState) => ({ ...prevState, password: "" }));
+          }, 3000);
+        }
+      }
+    }
+  };
   useEffect(() => {
     const tl = gsap.timeline();
     tl.from(".transitionDiv", {
@@ -77,22 +176,44 @@ const Auth: FC<ComponentProps> = ({ onClick }) => {
         ))}
       </div>
       <div className="fadeInInput">
-        <InputField type="text" label="full name" />
+        <InputField
+          type="text"
+          label="full name"
+          value={userData.fullName}
+          onChange={(e) =>
+            setUserData({ ...userData, fullName: e.target.value })
+          }
+          nameErr={error.fullName}
+        />
       </div>
       <div className="otherInput">
-        <InputField type="text" label="email" />
-        <InputField type="password" label="password" />
+        <InputField
+          type="text"
+          label="email"
+          value={userData.email}
+          onChange={(e) => setUserData({ ...userData, email: e.target.value })}
+          emailErr={error.email}
+        />
+        <InputField
+          type="password"
+          label="password"
+          value={userData.password}
+          onChange={(e) =>
+            setUserData({ ...userData, password: e.target.value })
+          }
+          passwordErr={error.password}
+        />
         <div className="mt-[5vh]">
           {activeTab === "login" ? (
             <button
-              onClick={() => onClick("home")}
+              onClick={() => handleSubmit("login")}
               className="bg-[#2ba6d8] btn py-1 px-4 -skew-x-12 rounded-lg lg:text-[20px] text-[16px] font-bold text-[#fff]"
             >
               Login
             </button>
           ) : (
             <button
-              onClick={() => onClick("home")}
+              onClick={() => handleSubmit("signup")}
               className="bg-[#2ba6d8] btn py-1 px-4 -skew-x-12 rounded-lg lg:text-[20px] text-[16px] font-bold text-[#fff]"
             >
               Signup

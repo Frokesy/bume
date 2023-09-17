@@ -1,16 +1,32 @@
-import React, { FC } from 'react'
+import React, { FC } from "react";
 
 interface FormProps {
-    label: string;
-    type: string;
+  label: string;
+  type: string;
+  nameErr?: string;
+  emailErr?: string;
+  passwordErr?: string;
 }
-const InputField: FC<FormProps> = ({label, type, ...props}) => {
+const InputField: FC<
+  FormProps & React.InputHTMLAttributes<HTMLInputElement>
+> = ({ label, type, nameErr, emailErr, passwordErr, ...props }) => {
   return (
+    <div>
       <div className="relative group text-[#ccc] mt-10">
         <input
           type={type}
           required
-          className="w-full h-10 px-4 text-sm peer bg-transparent border border-[#808080] rounded-lg outline-none"
+          className={`
+          ${
+            nameErr &&
+            "outline-none border border-red-500 rounded-lg w-full py-3 px-4 mt-1"
+          }
+          ${passwordErr && "outline-none border border-red-500 rounded-lg w-full py-3 px-4 mt-1"}
+          ${
+            emailErr &&
+            "outline-none border border-red-500 rounded-lg w-full py-3 px-4 mt-1"
+          }
+          w-full h-10 px-4 text-sm peer bg-transparent border border-[#808080] rounded-lg outline-none`}
           {...props}
         />
         <label
@@ -20,7 +36,18 @@ const InputField: FC<FormProps> = ({label, type, ...props}) => {
           {label}
         </label>
       </div>
-  )
-}
 
-export default InputField
+      {nameErr ? (
+        <small className="text-red-500 text-[13px] mt-1 flex justify-start">{nameErr}</small>
+      ) : null}
+      {emailErr ? (
+        <small className="text-red-500 text-[13px] flex justify-start mt-1">{emailErr}</small>
+      ) : null}
+      {passwordErr ? (
+        <small className="text-red-500 text-[13px] flex justify-start mt-1 text-left">{passwordErr}</small>
+      ) : null}
+    </div>
+  );
+};
+
+export default InputField;
