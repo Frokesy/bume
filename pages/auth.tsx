@@ -1,16 +1,15 @@
 import InputField from "@/components/InputField";
-import { handleLogin, handleSignup } from "@/utils/authFunc";
 import { supabase } from "@/utils/supabaseClient";
 import { gsap } from "gsap";
 import React, { FC, useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-interface ComponentProps {
-  onClick: Function;
+interface AuthProps {
+  router: any;
 }
-const Auth: FC<ComponentProps> = ({ onClick }) => {
+
+const Auth: FC<AuthProps> = ({ router }) => {
   const [activeTab, setActiveTab] = useState("signup");
   const [userData, setUserData] = useState({
     email: "",
@@ -24,8 +23,6 @@ const Auth: FC<ComponentProps> = ({ onClick }) => {
   });
 
   const [loading, setLoading] = useState(false);
-
-  // const router = useRouter()
 
   const validateField = (value: any) => {
     if (value === "") {
@@ -89,7 +86,7 @@ const Auth: FC<ComponentProps> = ({ onClick }) => {
     if (activeTab === "login") {
       setLoading(true);
       const isEmailValid = validateField(userData.email);
-      const isPasswordValid = userData.password.length >= 6;
+      const isPasswordValid = validatePassword(userData.password);
 
       setError({
         email: isEmailValid ? "" : "Email is required",
@@ -100,7 +97,37 @@ const Auth: FC<ComponentProps> = ({ onClick }) => {
       });
 
       if (isEmailValid && isPasswordValid) {
-        return true;
+        try {
+          const { data, error } = await supabase.auth.signInWithPassword({
+            email: userData.email,
+            password: userData.password,
+          });
+          if (error) {
+            setLoading(false);
+            throw error.message;
+          }
+          const id = data.user?.id;
+          toast.success("Login successful, you'll be redirected shortly...", {
+            position: "top-center",
+            theme: "dark",
+            autoClose: 2000,
+            hideProgressBar: true,
+            draggable: true,
+          });
+          setTimeout(() => {
+            router.push(`/home`);
+          }, 2000);
+          setLoading(false);
+        } catch (error: any) {
+          toast.error(error, {
+            position: "top-center",
+            theme: "dark",
+            autoClose: 2000,
+            hideProgressBar: true,
+            draggable: true,
+          });
+          setLoading(false);
+        }
       } else {
         setLoading(false);
         if (!isEmailValid) {
@@ -130,7 +157,50 @@ const Auth: FC<ComponentProps> = ({ onClick }) => {
       });
 
       if (isFullnameValid && isEmailValid && isPasswordValid) {
-        return true
+        try {
+          const { data, error } = await supabase.auth.signUp({
+            email: userData.email,
+            password: userData.password,
+          });
+          if (error) {
+            if (error.message === "User already registered") {
+              throw error.message;
+            }
+          }
+          if (!error) {
+            const id = data.user?.id;
+            const { data: userDetails, error: userError } = await supabase
+              .from("users")
+              .insert([
+                { userId: id, name: userData.fullName, email: userData.email },
+              ]);
+            if (userError) {
+              throw userError.message;
+            } else {
+              toast.success("Account created successfully!", {
+                position: "top-center",
+                theme: "dark",
+                autoClose: 2000,
+                hideProgressBar: true,
+                draggable: true,
+              });
+              setLoading(false);
+              setTimeout(() => {
+                router.push(`/verify-email/`);
+              }, 2000);
+            }
+          }
+        } catch (error: any) {
+          console.log(error)
+          toast.error(error, {
+            position: "top-center",
+            theme: "dark",
+            autoClose: 2000,
+            hideProgressBar: true,
+            draggable: true,
+          });
+          setLoading(false);
+        }
       } else {
         setLoading(false);
         if (!isFullnameValid) {
@@ -160,8 +230,11 @@ const Auth: FC<ComponentProps> = ({ onClick }) => {
       ease: "ease-in",
     });
   }, []);
+
+  console.log(router);
   return (
     <div className="transitionDiv text-[#000] lg:w-[30vw] w-[90vw] mx-auto flex flex-col justify-center text-center">
+      <ToastContainer />
       <div className="flex justify-between -skew-x-12">
         {tabs.map((tab) => (
           <div

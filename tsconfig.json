@@ -17,6 +17,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/Scene.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/Scene.jsx", "utils/supabaseClient.js", "context/AuthContext.ts"],
   "exclude": ["node_modules"]
 }

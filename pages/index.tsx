@@ -4,6 +4,7 @@ import Modes from "@/components/Modes";
 import Home from "@/components/Home";
 import { gsap } from "gsap";
 import Auth from "./auth";
+import { useRouter } from "next/router";
 
 const Bume = () => {
   const [theme, setTheme] = useState("dark");
@@ -12,10 +13,8 @@ const Bume = () => {
     setTheme(theme);
   };
 
-  //add a fade in and fade out animation respectively when the screens are switched
   const handleScreenChange = (screen: string) => {
     const tl = gsap.timeline();
-    //exit animation
     tl.to(".transitionDiv", {
       opacity: 0,
       duration: 2,
@@ -24,8 +23,9 @@ const Bume = () => {
         setCurrentScreen(screen);
       },
     });
-    console.log(screen);
   };
+
+  const router = useRouter()
 
   return (
     <div className="select-none">
@@ -36,7 +36,7 @@ const Bume = () => {
             <Home theme={theme} onClick={handleScreenChange} />
           </div>
         ) : (
-          <Auth onClick={handleScreenChange} />
+          <Auth router={router} />
         )}
       </Modes>
     </div>
