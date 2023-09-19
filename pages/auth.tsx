@@ -1,10 +1,9 @@
 import InputField from "@/components/InputField";
 import { handleLogin } from "@/utils/loginService";
 import { handleSignup } from "@/utils/signupService";
-import { supabase } from "@/utils/supabaseClient";
 import { gsap } from "gsap";
 import React, { FC, useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 interface AuthProps {

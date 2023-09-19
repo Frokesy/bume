@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Modes from "@/components/Modes";
 import Home from "@/components/Home";
@@ -9,9 +9,20 @@ import { useRouter } from "next/router";
 const Bume = () => {
   const [theme, setTheme] = useState("dark");
   const [currentScreen, setCurrentScreen] = useState("home");
-  const toggleTheme = (theme: string) => {
-    setTheme(theme);
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme && savedTheme !== theme) {
+      setTheme(savedTheme);
+    }
+  }, [theme]);
+
+  const toggleTheme = (newTheme: string) => {
+    if (newTheme !== theme) {
+      localStorage.setItem("theme", newTheme);
+      setTheme(newTheme);
+    }
   };
+
 
   const handleScreenChange = (screen: string) => {
     const tl = gsap.timeline();
@@ -21,7 +32,7 @@ const Bume = () => {
       ease: "power2.inOut",
       onComplete: () => {
         setCurrentScreen(screen);
-      },
+      }
     });
   };
 
