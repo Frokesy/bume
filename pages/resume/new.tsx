@@ -1,5 +1,6 @@
 import Container from "@/components/dashboard/Container";
-import Frokesy from "@/components/templates.tsx/Frokesy";
+import Frokesy from "@/components/templates/Frokesy";
+import Layout from "@/components/templates/Layout";
 import React from "react";
 
 const New = () => {
@@ -23,7 +24,9 @@ const New = () => {
     //   </div>
     // </Container>
 
-    <Frokesy />
+    <Layout>
+      <Frokesy />
+    </Layout>
   );
 };
 
