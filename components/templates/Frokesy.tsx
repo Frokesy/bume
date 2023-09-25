@@ -8,7 +8,7 @@ const Frokesy = () => {
       <Layout>
         <div className="header bg-[rgb(27,31,36)] pl-6 text-[#fff]">
           <div className="flex justify-between pt-3">
-            <div className="w-[50%] max-w-[350px] pt-6">
+            <div className="w-[70%] max-w-[350px] pt-6">
               <div className="border-[3px] border-b-[#ccc] w-[15%]"></div>
               <h2 className="lg:text-[24px] text-[16px] font-bold pt-6">
                 I&apos;m Ayanfeoluwa Akindele, a Frontend Engineer.
@@ -21,21 +21,21 @@ const Frokesy = () => {
               </div>
             </div>
 
-            <div className="lg:h-[200px] lg:w-[225px] h-[100%] w-[150px]">
+            {/* <div className="lg:h-[200px] lg:w-[225px] h-[100%] w-[150px]">
               <img
                 src="/assets/dp2.png"
                 alt="dp"
                 className="h-[100%] w-[100%]"
               />
-            </div>
+            </div> */}
           </div>
         </div>
 
         <div className="flex justify-between">
-          <div id="1" className="border-r w-[50%] border-[#808080] mt-10 px-6">
+          <div id="1" className="border-r w-[50%] border-[#808080] mt-6 px-6">
             <div className="border-[3px] border-b-[#808080] w-[15%]"></div>
             <div className="about">
-              <h2 className="text-[20px] font-bold text-[#11466d] pt-4 pb-2">
+              <h2 className="text-[20px] font-bold text-[#11466d] pt-2">
                 About me
               </h2>
               <p className="text-[13px]">
@@ -47,8 +47,8 @@ const Frokesy = () => {
             </div>
 
             <div className="education">
-              <div className="border-[3px] border-b-[#808080] w-[15%] mt-10"></div>
-              <h2 className="text-[20px] font-bold text-[#11466d] pt-4 pb-2">
+              <div className="border-[3px] border-b-[#808080] w-[15%] mt-6"></div>
+              <h2 className="text-[20px] font-bold text-[#11466d] pt-2">
                 My education
               </h2>
               <section className="grid grid-cols-1 gap-y-4">
@@ -56,7 +56,7 @@ const Frokesy = () => {
                   <h2 className="uppercase font-mono text-[15px]">
                     Oxford University / 2017-2020
                   </h2>
-                  <p className="text-[#757bc8] text-[16px] font-bold py-2">
+                  <p className="text-[#757bc8] text-[16px] font-bold">
                     B.Sc Arts in Graphics design
                   </p>
                 </section>
@@ -64,7 +64,7 @@ const Frokesy = () => {
                   <h2 className="uppercase font-mono text-[15px]">
                     Udemy / 2021-2022
                   </h2>
-                  <p className="text-[#757bc8] text-[16px] font-bold py-2">
+                  <p className="text-[#757bc8] text-[16px] font-bold">
                     B.Sc Design
                   </p>
                 </section>
@@ -72,24 +72,24 @@ const Frokesy = () => {
             </div>
 
             <div className="contact-info">
-              <div className="border-[3px] border-b-[#808080] w-[15%] mt-10"></div>
-              <h2 className="text-[20px] font-bold text-[#11466d] pt-4 pb-2">
+              <div className="border-[3px] border-b-[#808080] w-[15%] mt-6"></div>
+              <h2 className="text-[20px] font-bold text-[#11466d] pt-2">
                 Contact Information
               </h2>
-              <section className="grid grid-cols-1 gap-y-4">
+              <section className="grid grid-cols-1 gap-y-3">
                 <section>
                   <h2 className="uppercase text-[13px]">email:</h2>
-                  <p className="text-[16px] py-1 font-mono">
+                  <p className="text-[16px] font-mono font-semibold">
                     info@johncarter.com
                   </p>
                 </section>
                 <section>
                   <h2 className="uppercase text-[13px]">call:</h2>
-                  <p className="text-[16px] py-1 font-mono">+2348148175713</p>
+                  <p className="text-[16px] font-mono font-semibold">+2348148175713</p>
                 </section>
                 <section>
                   <h2 className="uppercase text-[13px]">website:</h2>
-                  <p className="text-[16px] py-1 font-mono">
+                  <p className="text-[16px] font-semibold font-mono">
                     www.josephwallace.com
                   </p>
                 </section>
@@ -97,8 +97,8 @@ const Frokesy = () => {
             </div>
 
             <div className="skills">
-              <div className="border-[3px] border-b-[#808080] w-[15%] mt-10"></div>
-              <h2 className="text-[20px] font-bold text-[#11466d] pt-4 pb-2">
+              <div className="border-[3px] border-b-[#808080] w-[15%] mt-6"></div>
+              <h2 className="text-[20px] font-bold text-[#11466d] pt-2">
                 Skills
               </h2>
               <ul className="grid grid-cols-1 gap-y-3 px-8">
@@ -121,11 +121,11 @@ const Frokesy = () => {
           {/* Right side */}
           <div className="w-[50%] px-6">
             <div className="experience">
-              <div className="border-[3px] border-b-[#808080] w-[15%] mt-10"></div>
-              <h2 className="text-[20px] font-bold text-[#11466d] pt-4 pb-2">
+              <div className="border-[3px] border-b-[#808080] w-[15%] mt-6"></div>
+              <h2 className="text-[20px] font-bold text-[#11466d] pt-2">
                 Past Experience
               </h2>
-              <section className="grid grid-cols-1 gap-y-10">
+              <section className="grid grid-cols-1 gap-y-6">
                 <section>
                   <div className="flex items-center space-x-6">
                     <h2 className="font-bold text-[20px]">LinkedIn</h2>
