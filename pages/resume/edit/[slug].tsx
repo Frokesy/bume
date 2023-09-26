@@ -10,7 +10,9 @@ const Template = () => {
   return (
     <Container>
       <div className="mt-10 flex justify-between mx-auto">
-        {resumeId}&apos;s template editor
+        <div>
+          <span>{resumeId}&apos;s template editor</span>
+        </div>
         <div className="text-[#000]">
           <Frokesy />
         </div>
