@@ -19,7 +19,7 @@ const Frokesy: FC<TemplateProps> = ({ value }) => {
           <div id="1" className="border-r w-[50%] border-[#808080] mt-6 px-6">
             <div className="border-[3px] border-b-[#808080] w-[15%]"></div>
             <AboutSection about={value.about} />
-            <EducationSection />
+            <EducationSection education={value.education} />
             <ContactSection />
             <SkillSection />
           </div>

@@ -17,8 +17,8 @@ const Container: FC<ContainerProps> = ({ children }) => {
     flex min-h-[100vh]
     ${theme === "dark" ? `bg-[#000] text-[#fff]` : `bg-[#fff] text-[#000]`}`}
     >
-      <div className="w-[7%]"></div>
-      <div className="w-[93%]">{children}</div>
+      <div className="w-[5%]"></div>
+      <div className="w-[95%] pr-4">{children}</div>
     </div>
   );
 };
