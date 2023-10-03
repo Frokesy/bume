@@ -21,7 +21,7 @@ const PersonalDetails: FC<Props> = ({ collectEntries }) => {
   }, [personalDetails]);
   return (
     <Accordion title="Personal Details">
-      <div>
+      <div className="pt-6">
         <div className="flex justify-between space-x-4 pb-6">
           <Input
             placeholder="full name"

@@ -14,7 +14,12 @@ const Template = () => {
   const router = useRouter();
   const resumeId = router.query.slug;
   const [resumeDetails, setResumeDetails] = React.useState({
-    personalDetails: [],
+    personalDetails: {
+      id: Math.floor(Math.random() * 1000),
+      name: "",
+      role: "",
+      about: "",
+    },
     education: [],
     contactInfo: [],
     skills: [],
@@ -25,10 +30,11 @@ const Template = () => {
     setResumeDetails({ ...resumeDetails, [section]: data });
   };
 
+  console.log(resumeDetails);
   return (
     <Container>
       <div className="mt-10 flex justify-between mx-auto">
-        <div className="w-[40%] h-[95vh] overflow-auto">         
+        <div className="w-[40%] h-[95vh] overflow-auto">
           <PersonalDetails collectEntries={getEntries} />
           <Education collectEntries={getEntries} />
           <ContactInfo collectEntries={getEntries} />

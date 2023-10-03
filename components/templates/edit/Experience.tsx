@@ -8,9 +8,20 @@ interface Props {
   collectEntries: (section: string, data: any) => void;
 }
 
+interface ExperienceDetail {
+  id: number;
+  company: string;
+  jobTitle: string;
+  startDate: string;
+  endDate: string;
+  summary: string;
+  isChecked: boolean;
+}
+
 const Experience: FC<Props> = ({ collectEntries }) => {
-  const [experienceDetails, setExperienceDetails] = useState([
-    {
+  const [experienceDetails, setExperienceDetails] = useState<ExperienceDetail[]>([]);
+  const addNewEntry = () => {
+    const newEntry: ExperienceDetail = {
       id: Math.floor(Math.random() * 1000),
       company: "",
       jobTitle: "",
@@ -18,21 +29,8 @@ const Experience: FC<Props> = ({ collectEntries }) => {
       endDate: "",
       summary: "",
       isChecked: false,
-    },
-  ]);
-  const addNewEntry = () => {
-    setExperienceDetails([
-      ...experienceDetails,
-      {
-        id: Math.floor(Math.random() * 1000),
-        company: "",
-        jobTitle: "",
-        startDate: "",
-        endDate: "",
-        summary: "",
-        isChecked: false,
-      },
-    ]);
+    };
+    setExperienceDetails([...experienceDetails, newEntry]);
   };
 
   const handleCheckboxChange = (event: any, id: number) => {
