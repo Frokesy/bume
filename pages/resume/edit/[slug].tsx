@@ -1,6 +1,7 @@
 import Container from "@/components/dashboard/Container";
 import Frokesy from "@/components/templates/Frokesy";
 import Input from "@/components/templates/Input";
+import ContactInfo from "@/components/templates/edit/ContactInfo";
 import Education from "@/components/templates/edit/Education";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
@@ -13,17 +14,20 @@ const Template = () => {
     role: "",
     about: "",
     education: [],
+    contactInfo: [],
   });
 
-  const getEntries = (data: any) => {
-    setResumeDetails({ ...resumeDetails, education: data });
+  const getEntries = (section: string, data: any) => {
+    setResumeDetails({ ...resumeDetails, [section]: data });
   };
 
   return (
     <Container>
       <div className="mt-10 flex justify-between mx-auto">
         <div className="w-[40%]">
-        <h2 className="text-[#fff] pt-4 pb-3 text-[20px] font-semibold">Personal Details</h2>
+          <h2 className="text-[#fff] pt-4 pb-3 text-[20px] font-semibold">
+            Personal Details
+          </h2>
           <div className="flex justify-between space-x-4 pb-6">
             <Input
               placeholder="full name"
@@ -50,6 +54,7 @@ const Template = () => {
           />
 
           <Education collectEntries={getEntries} />
+          <ContactInfo collectEntries={getEntries} />
         </div>
         <div className="text-[#000]">
           <Frokesy value={resumeDetails} />

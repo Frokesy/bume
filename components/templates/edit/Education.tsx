@@ -4,7 +4,7 @@ import { FaPlus, FaTrashAlt } from "react-icons/fa";
 import Input from "../Input";
 
 interface Props {
-  collectEntries: (data: any) => void;
+  collectEntries: (section: string, data: any) => void;
 }
 
 const Education: FC<Props> = ({ collectEntries }) => {
@@ -61,7 +61,7 @@ const Education: FC<Props> = ({ collectEntries }) => {
   };
 
   useEffect(() => {
-    collectEntries(educationDetails);
+    collectEntries("education", educationDetails);
   }, [educationDetails]);
 
   return (
