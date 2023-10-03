@@ -7,8 +7,8 @@ interface AboutProps {
 const AboutSection: FC<AboutProps> = ({ about }) => {
   return (
     <div className="about">
-      <h2 className="text-[20px] font-bold text-[#11466d] pt-2">About me</h2>
-      <p className="text-[13px]">
+      <h2 className="lg:text-[20px] text-[16px] font-bold text-[#11466d] pt-2">About me</h2>
+      <p className="lg:text-[13px] text-[11px]">
         {about === ""
           ? "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus distinctio, reprehenderit architecto laborum, sunt corporis nam obcaecati aut iste quibusdam sequi quia minus vel rem, doloribus culpa officiis officia voluptas!"
           : about}

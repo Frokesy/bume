@@ -18,7 +18,7 @@ const Container: FC<ContainerProps> = ({ children }) => {
     ${theme === "dark" ? `bg-[#000] text-[#fff]` : `bg-[#fff] text-[#000]`}`}
     >
       <div className="w-[5%]"></div>
-      <div className="w-[95%] pr-4">{children}</div>
+      <div className="lg:w-[95%] w-[100%] lg:pr-4">{children}</div>
     </div>
   );
 };

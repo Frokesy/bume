@@ -13,7 +13,7 @@ const Accordion: FC<Props> = ({ title, children }) => {
       {({ open }) => (
         <>
           <Disclosure.Button className="flex justify-between w-full pt-10">
-            <h2 className="text-[#fff] text-[20px] font-semibold">{title}</h2>
+            <h2 className="text-[#fff] lg:text-[20px] text-[16px] font-semibold">{title}</h2>
             <div className="ui-open:rotate-90 ui-open:transform">
               {open ? <FaChevronDown /> : <FaChevronRight />}
             </div>
