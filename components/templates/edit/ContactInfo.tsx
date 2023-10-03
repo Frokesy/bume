@@ -7,7 +7,7 @@ interface Props {
 }
 
 const ContactInfo: FC<Props> = ({ collectEntries }) => {
-  const [educationDetails, setEducationDetails] = useState([
+  const [contactDetails, setContactDetails] = useState([
     {
       id: Math.floor(Math.random() * 1000),
       meansOfContact: "",
@@ -15,8 +15,8 @@ const ContactInfo: FC<Props> = ({ collectEntries }) => {
     },
   ]);
   const addNewEntry = () => {
-    setEducationDetails([
-      ...educationDetails,
+    setContactDetails([
+      ...contactDetails,
       {
         id: Math.floor(Math.random() * 1000),
         meansOfContact: "",
@@ -26,8 +26,8 @@ const ContactInfo: FC<Props> = ({ collectEntries }) => {
   };
 
   const handleInputChange = (event: any, id: number, field: string) => {
-    setEducationDetails((prevEducationDetails) => {
-      return prevEducationDetails.map((tab) => {
+    setContactDetails((prevcontactDetails) => {
+      return prevcontactDetails.map((tab) => {
         if (tab.id === id) {
           return { ...tab, [field]: event.target.value };
         }
@@ -37,14 +37,14 @@ const ContactInfo: FC<Props> = ({ collectEntries }) => {
   };
 
   const deleteEntry = (id: number) => {
-    setEducationDetails((prevEducationDetails) => {
-      return prevEducationDetails.filter((tab) => tab.id !== id);
+    setContactDetails((prevcontactDetails) => {
+      return prevcontactDetails.filter((tab) => tab.id !== id);
     });
   };
 
   useEffect(() => {
-    collectEntries("contactInfo", educationDetails);
-  }, [educationDetails]);
+    collectEntries("contactInfo", contactDetails);
+  }, [contactDetails]);
 
   return (
     <div>
@@ -57,7 +57,7 @@ const ContactInfo: FC<Props> = ({ collectEntries }) => {
         </button>
       </div>
 
-      {educationDetails.map((tab) => (
+      {contactDetails.map((tab) => (
         <div key={tab.id}>
           <div className="flex justify-between pt-6 pb-3">
             <div className="w-[45%]">

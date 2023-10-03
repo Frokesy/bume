@@ -3,6 +3,7 @@ import Frokesy from "@/components/templates/Frokesy";
 import Input from "@/components/templates/Input";
 import ContactInfo from "@/components/templates/edit/ContactInfo";
 import Education from "@/components/templates/edit/Education";
+import Skills from "@/components/templates/edit/Skills";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 
@@ -15,6 +16,7 @@ const Template = () => {
     about: "",
     education: [],
     contactInfo: [],
+    skills: [],
   });
 
   const getEntries = (section: string, data: any) => {
@@ -24,7 +26,7 @@ const Template = () => {
   return (
     <Container>
       <div className="mt-10 flex justify-between mx-auto">
-        <div className="w-[40%]">
+        <div className="w-[40%] h-[95vh] overflow-auto">
           <h2 className="text-[#fff] pt-4 pb-3 text-[20px] font-semibold">
             Personal Details
           </h2>
@@ -55,8 +57,9 @@ const Template = () => {
 
           <Education collectEntries={getEntries} />
           <ContactInfo collectEntries={getEntries} />
+          <Skills collectEntries={getEntries} />
         </div>
-        <div className="text-[#000]">
+        <div className="text-[#000] h-[95vh] overflow-auto">
           <Frokesy value={resumeDetails} />
         </div>
       </div>

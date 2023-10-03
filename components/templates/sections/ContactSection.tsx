@@ -5,7 +5,6 @@ interface Props {
 }
 
 const ContactSection: FC<Props> = ({ contactInfo }) => {
-  console.log("contactInfo", contactInfo);
   return (
     <div className="contact-info">
       <div className="border-[3px] border-b-[#808080] w-[15%] mt-6"></div>

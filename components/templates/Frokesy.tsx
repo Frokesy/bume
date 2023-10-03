@@ -21,7 +21,7 @@ const Frokesy: FC<TemplateProps> = ({ value }) => {
             <AboutSection about={value.about} />
             <EducationSection education={value.education} />
             <ContactSection contactInfo={value.contactInfo} />
-            <SkillSection />
+            <SkillSection skills={value.skills} />
           </div>
 
           {/* Right side */}

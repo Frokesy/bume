@@ -19,12 +19,9 @@
     pointer-events: none;
 }
 
-
-/* .content {
-    opacity: 0;
-    background-color: cornflowerblue;
-    transition: 1s;
-} */
+.overflow-auto::-webkit-scrollbar {
+    display: none;
+}
 
 .fadeIn {
     opacity: 1;
