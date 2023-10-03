@@ -69,7 +69,7 @@ const Education: FC<Props> = ({ collectEntries }) => {
     <Accordion title="Education">
       <div className="flex justify-end">
         <button
-          className="flex cursor-pointer items-center mt-3 border border-[#ccc] text-[14px] font-bold py-1 px-4 space-x-3 rounded-full hover:opacity-75"
+          className="flex cursor-pointer items-center mt-3 border border-[#ccc] lg:text-[14px] text-[11px] font-bold py-1 px-4 space-x-3 rounded-full hover:opacity-75"
           onClick={() => addNewEntry()}
         >
           <span>new entry</span>
@@ -118,13 +118,13 @@ const Education: FC<Props> = ({ collectEntries }) => {
                 </div>
               )}
             </div>
-            <div className="flex items-center w-[35%] space-x-6">
-              <span className="text-[14px]">already graduated?</span>
+            <div className="flex items-center w-[35%] space-x-2 lg:space-x-6">
+              <span className="lg:text-[14px] text-[11px]">already graduated?</span>
               <input
                 type="checkbox"
                 onChange={(e) => handleCheckboxChange(e, tab.id)}
                 checked={tab.isChecked}
-                className="scale-125"
+                className="lg:scale-125"
               />
             </div>
           </div>
@@ -132,7 +132,7 @@ const Education: FC<Props> = ({ collectEntries }) => {
             className="flex justify-end mt-1 cursor-pointer hover:opacity-75"
             onClick={() => deleteEntry(tab.id)}
           >
-            <FaTrashAlt color="ee0000" size={20} />
+            <FaTrashAlt color="ee0000" />
           </div>
         </div>
       ))}

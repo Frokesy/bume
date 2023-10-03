@@ -17,13 +17,13 @@ const Input: FC<
           placeholder={placeholder}
           rows={5}
           {...props}
-          className="px-2 py-2 bg-transparent border w-[100%] border-[#ccc] rounded-lg outline-none"
+          className="px-2 py-2 bg-transparent lg:placeholder:text-[14px] placeholder:text-[13px] border w-[100%] border-[#ccc] rounded-lg outline-none"
         />
       ) : (
         <input
           type="text"
           placeholder={placeholder}
-          className="px-2 py-1 bg-transparent border border-[#ccc] w-full rounded-lg outline-none"
+          className="px-2 py-1 bg-transparent lg:placeholder:text-[14px] placeholder:text-[12px] border border-[#ccc] w-full rounded-lg outline-none"
           {...props}
         />
       )}

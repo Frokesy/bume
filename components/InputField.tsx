@@ -19,7 +19,7 @@ const InputField: FC<
           className={`
           ${
             nameErr &&
-            "outline-none border border-red-500 rounded-lg w-full py-3 px-4 mt-1"
+            "outline-none border border-red-500 rounded-lg lg:text-[14px] text-[12px] w-full py-3 px-4 mt-1"
           }
           ${passwordErr && "outline-none border border-red-500 rounded-lg w-full py-3 px-4 mt-1"}
           ${
@@ -31,7 +31,7 @@ const InputField: FC<
         />
         <label
           htmlFor={label}
-          className="transform transition-all absolute top-0 left-0 h-full flex items-center pl-4 text-sm group-focus-within:text-[16px] peer-valid:text-[16px] group-focus-within:text-[#ccc] group-focus-within:font-mono group-focus-within:font-bold group-focus-within:pb-2 group-focus-within:pl-1 group-focus-within:h-1/2 peer-valid:h-1/2  group-focus-within:-translate-y-full peer-valid:-translate-y-full peer-valid:pl-1 peer-valid:pb-2 peer-valid:text-[#ccc] peer-valid:font-mono peer-valid:font-bold peer-valid:ease-linear peer-valid:transition-all"
+          className="transform transition-all absolute top-0 lg:text-[14px] text-[12px] left-0 h-full flex items-center pl-4 text-sm group-focus-within:text-[16px] peer-valid:text-[16px] group-focus-within:text-[#ccc] group-focus-within:font-mono group-focus-within:font-bold group-focus-within:pb-2 group-focus-within:pl-1 group-focus-within:h-1/2 peer-valid:h-1/2  group-focus-within:-translate-y-full peer-valid:-translate-y-full peer-valid:pl-1 peer-valid:pb-2 peer-valid:text-[#ccc] peer-valid:font-mono peer-valid:font-bold peer-valid:ease-linear peer-valid:transition-all"
         >
           {label}
         </label>

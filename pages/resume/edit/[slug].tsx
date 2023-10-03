@@ -34,12 +34,12 @@ const Template = () => {
     <Container>
       <div className="lg:mt-10 lg:hidden flex lg:justify-betwee mx-auto">
         {showTemplate ? (
-          <div className="text-[#000] h-[95vh] overflow-auto">
+          <div className="text-[#000]">
             <Frokesy value={resumeDetails} setShowTemplate={setShowTemplate} />
           </div>
         ) : (
-          <div className="w-[95%] mx-auto h-[95vh] overflow-auto">
-            <div className="flex justify-end lg:hidden mt-10">
+          <div className="w-[95%]">
+            <div className="flex justify-end lg:hidden my-4">
               <button
                 className="text-[#fff] bg-[#0e6e97] px-4 py-2 flex items-center space-x-2 font-semibold rounded-md"
                 onClick={() => setShowTemplate(!showTemplate)}
@@ -48,25 +48,19 @@ const Template = () => {
                 <span>preview</span>
               </button>
             </div>
-            <PersonalDetails collectEntries={getEntries} />
-            <Education collectEntries={getEntries} />
-            <ContactInfo collectEntries={getEntries} />
-            <Skills collectEntries={getEntries} />
-            <Experience collectEntries={getEntries} />
+            <div className="h-[92vh] overflow-auto">
+              <PersonalDetails collectEntries={getEntries} />
+              <Education collectEntries={getEntries} />
+              <ContactInfo collectEntries={getEntries} />
+              <Skills collectEntries={getEntries} />
+              <Experience collectEntries={getEntries} />
+            </div>
           </div>
         )}
       </div>
-      <div className="mt-10 flex lg:justify-between mx-auto">
-        <div className="w-[40%] h-[95vh] overflow-auto">
-          <div className="flex justify-end lg:hidden mt-10">
-            <button
-              className="text-[#fff] bg-[#0e6e97] px-4 py-2 flex items-center space-x-2 font-semibold rounded-md"
-              onClick={() => setShowTemplate(!showTemplate)}
-            >
-              <FaEye />
-              <span>preview</span>
-            </button>
-          </div>
+
+      <div className="mt-10 lg:flex hidden justify-between mx-auto">
+        <div className="w-[40%]">
           <PersonalDetails collectEntries={getEntries} />
           <Education collectEntries={getEntries} />
           <ContactInfo collectEntries={getEntries} />
