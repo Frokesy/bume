@@ -2,19 +2,18 @@ import { FC } from "react";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 interface HeaderProps {
-  name: string;
-  role: string;
+  personalDetails: any
 }
 
-const HeaderSection: FC<HeaderProps> = ({ name, role }) => {
+const HeaderSection: FC<HeaderProps> = ({ personalDetails }) => {
   return (
     <div className="header bg-[rgb(27,31,36)] pl-6 text-[#fff]">
       <div className="flex justify-between pt-3">
         <div className="w-[70%] max-w-[350px] pt-6">
           <div className="border-[3px] border-b-[#ccc] w-[15%]"></div>
           <h2 className="lg:text-[24px] text-[16px] font-bold pt-6">
-            I&apos;m {name === "" ? "Ayanfeoluwa Akindele" : name}, a{" "}
-            {role === "" ? "Frontend Engineer" : role}.
+            I&apos;m {personalDetails.name === "" ? "Ayanfeoluwa Akindele" : personalDetails.name}, a{" "}
+            {personalDetails.role === "" ? "Frontend Engineer" : personalDetails.role}.
           </h2>
 
           <div className="socials pt-6 pb-4 flex space-x-3">

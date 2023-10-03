@@ -14,7 +14,7 @@ const Frokesy: FC<TemplateProps> = ({ value }) => {
   return (
     <>
       <Layout>
-        <HeaderSection name={value.name} role={value.role} />
+        <HeaderSection personalDetails={value.personalDetails} />
         <div className="flex justify-between">
           <div id="1" className="border-r w-[50%] max-w-[50%] border-[#808080] mt-6 px-6">
             <div className="border-[3px] border-b-[#808080] w-[15%]"></div>

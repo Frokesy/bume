@@ -1,7 +1,7 @@
-import InputField from "@/components/InputField";
 import React, { FC, useEffect, useState } from "react";
 import { FaPlus, FaTrashAlt } from "react-icons/fa";
 import Input from "../Input";
+import Accordion from "@/components/Accordion";
 
 interface Props {
   collectEntries: (section: string, data: any) => void;
@@ -46,10 +46,13 @@ const Skills: FC<Props> = ({ collectEntries }) => {
   }, [skillDetails]);
 
   return (
-    <div>
-      <div className="flex justify-between pt-10 items-center">
-        <h2 className="text-[#fff] text-[20px] font-semibold">Skills</h2>
-        <button className="hover:opacity-75" onClick={() => addNewEntry()}>
+    <Accordion title="Skills">
+      <div className="flex justify-end">
+        <button
+          className="flex cursor-pointer items-center mt-3 border border-[#ccc] text-[14px] font-bold py-1 px-4 space-x-3 rounded-full hover:opacity-75"
+          onClick={() => addNewEntry()}
+        >
+          <span>new entry</span>
           <FaPlus />
         </button>
       </div>
@@ -74,7 +77,7 @@ const Skills: FC<Props> = ({ collectEntries }) => {
           </div>
         ))}
       </div>
-    </div>
+    </Accordion>
   );
 };
 
