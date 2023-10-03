@@ -29,7 +29,7 @@ const ContactSection: FC<Props> = ({ contactInfo }) => {
           <section>
             <h2 className="uppercase text-[13px]">email:</h2>
             <p className="text-[16px] font-mono font-semibold">
-              ayanfeoluwaakindele@gmail.com
+              ayanfeoluwaakindele1@gmail.com
             </p>
           </section>
           <section>

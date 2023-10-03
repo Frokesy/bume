@@ -26,7 +26,7 @@ const Frokesy: FC<TemplateProps> = ({ value }) => {
 
           {/* Right side */}
           <div className="w-[50%] px-6">
-            <ExperienceSection />
+            <ExperienceSection experience={value.experience} />
           </div>
         </div>
       </Layout>
