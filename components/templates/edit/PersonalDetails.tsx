@@ -1,6 +1,7 @@
 import Accordion from "@/components/Accordion";
 import React, { FC, useEffect, useState } from "react";
 import Input from "../Input";
+import SocialLinks from "./SocialLinks";
 
 interface Props {
     collectEntries: (section: string, data: any) => void;
@@ -13,9 +14,14 @@ const PersonalDetails: FC<Props> = ({ collectEntries }) => {
       name: "",
       role: "",
       about: "",
+      socialLinks: []
     },
   );
 
+  const getSocialLinks = (data: any ) => {
+    setPersonalDetails({ ...personalDetails, socialLinks: data });
+  }
+  
   useEffect(() => {
     collectEntries("personalDetails", personalDetails);
   }, [personalDetails]);
@@ -46,6 +52,8 @@ const PersonalDetails: FC<Props> = ({ collectEntries }) => {
           }
           placeholder="a little about yourself...."
         />
+
+        <SocialLinks collectSocialLinks={getSocialLinks} />
       </div>
     </Accordion>
   );
