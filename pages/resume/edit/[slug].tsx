@@ -26,6 +26,19 @@ const Template = () => {
     experience: [],
   });
 
+  const [pdfUrl, setPdfUrl] = useState<string>()
+
+  const handleDownloadPdf = async () => {
+    const response = await fetch('/api/pdf')
+    const pdfUrl = await response.text()
+  
+    const a = document.createElement('a')
+    a.href = pdfUrl
+    a.download = 'my-pdf.pdf'
+    a.click()
+    console.log("clicked")
+  }
+  
   const getEntries = (section: string, data: any) => {
     setResumeDetails({ ...resumeDetails, [section]: data });
   };
@@ -72,6 +85,8 @@ const Template = () => {
           <Frokesy value={resumeDetails} setShowTemplate={setShowTemplate} />
         </div>
       </div>
+      <button onClick={handleDownloadPdf} className="text-[#fff]">Download PDF</button>
+      {pdfUrl && <a href={pdfUrl} download="my-pdf.pdf">Download PDF</a>}
     </Container>
   );
 };

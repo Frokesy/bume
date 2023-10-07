@@ -9,8 +9,8 @@ import ExperienceSection from "./sections/ExperienceSection";
 import { FaAngleDoubleLeft } from "react-icons/fa";
 
 interface TemplateProps {
-  value: any;
-  setShowTemplate: any;
+  value?: any;
+  setShowTemplate?: any;
 }
 const Frokesy: FC<TemplateProps> = ({ value, setShowTemplate }) => {
   return (
