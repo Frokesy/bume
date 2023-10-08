@@ -5,6 +5,7 @@ import Education from "@/components/templates/edit/Education";
 import Experience from "@/components/templates/edit/Experience";
 import PersonalDetails from "@/components/templates/edit/PersonalDetails";
 import Skills from "@/components/templates/edit/Skills";
+import { supabase } from "@/utils/supabaseClient";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { FaEye } from "react-icons/fa";
@@ -14,29 +15,53 @@ const Template = () => {
   const resumeId = router.query.slug;
   const [showTemplate, setShowTemplate] = useState(false);
   const [resumeDetails, setResumeDetails] = React.useState({
-    personalDetails: {
+    personalDetails: [{
       id: Math.floor(Math.random() * 1000),
       name: "",
       role: "",
       about: "",
-    },
+    }],
     education: [],
     contactInfo: [],
     skills: [],
     experience: [],
   });
 
-  const [pdfUrl, setPdfUrl] = useState<string>()
+  // const [pdfUrl, setPdfUrl] = useState<string>()
 
-  const handleDownloadPdf = async () => {
-    const response = await fetch('/api/pdf')
-    const pdfUrl = await response.text()
+  // const handleDownloadPdf = async () => {
+  //   const response = await fetch('/api/pdf')
+  //   const pdfUrl = await response.text()
   
-    const a = document.createElement('a')
-    a.href = pdfUrl
-    a.download = 'my-pdf.pdf'
-    a.click()
-    console.log("clicked")
+  //   const a = document.createElement('a')
+  //   a.href = pdfUrl
+  //   a.download = 'my-pdf.pdf'
+  //   a.click()
+  //   console.log("clicked")
+  // }
+
+  const saveDetails = async () => {
+      try {
+        const { data, error } = await supabase
+        .from("templates")
+        .insert([
+          {
+            resume_id: resumeId,
+            personal_details: resumeDetails.personalDetails,
+            education: resumeDetails.education,
+            contact_info: resumeDetails.contactInfo,
+            skills: resumeDetails.skills,
+            experience: resumeDetails.experience,
+          },
+        ])
+        if (error) throw error
+        if (!error) {
+          console.log(data)
+          console.log("added successfully")
+        }
+      } catch (error) {
+        console.log(error)
+      }
   }
   
   const getEntries = (section: string, data: any) => {
@@ -85,8 +110,9 @@ const Template = () => {
           <Frokesy value={resumeDetails} setShowTemplate={setShowTemplate} />
         </div>
       </div>
-      <button onClick={handleDownloadPdf} className="text-[#fff]">Download PDF</button>
-      {pdfUrl && <a href={pdfUrl} download="my-pdf.pdf">Download PDF</a>}
+      <button className="font-semibold" onClick={saveDetails}>Save</button>
+      {/* <button onClick={handleDownloadPdf} className="text-[#fff]">Download PDF</button>
+      {pdfUrl && <a href={pdfUrl} download="my-pdf.pdf">Download PDF</a>} */}
     </Container>
   );
 };
