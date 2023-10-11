@@ -66,7 +66,7 @@ const Experience: FC<Props> = ({ collectEntries }) => {
   }, [experienceDetails]);
 
   return (
-    <Accordion title="Personal Experience">
+    <Accordion title="Past Experience">
       <div className="pb-[15vh]">
         <div className="flex justify-end">
           <button

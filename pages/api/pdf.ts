@@ -1,21 +1,44 @@
-import { NextApiHandler } from 'next'
-import puppeteer from 'puppeteer'
-import fs from 'fs'
-import path from 'path'
+import { NextApiRequest, NextApiResponse } from "next";
+import puppeteer from "puppeteer";
 
-const Handler: NextApiHandler = async (req, res) => {
-  const browser = await puppeteer.launch()
-  const page = await browser.newPage()
+const saveAsPdf = async (url: string, resumeId: string) => {
+  if (resumeId != "") {
+    try {
+      const browser = await puppeteer.launch();
+      const page = await browser.newPage();
 
-  await page.goto('http://localhost:3000/')
-  await page.emulateMediaType('screen')
+      await page.goto(url, { waitUntil: "load" });
+      await page.emulateMediaType("screen");
+      const result = await page.pdf({
+        format: "a4",
+      });
+      await browser.close();
+      return result;
+    } catch (error) {
+      console.log("error generating pdf", error);
+      return error;
+    }
+  }
+};
 
-  const pdfBuffer = await page.pdf({ format: 'A4' })
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  const { url, resumeId } = req.query;
 
-  const pdfPath = path.join(process.cwd(), 'public', 'my-pdf.pdf')
-  fs.writeFileSync(pdfPath, pdfBuffer)
+  if (!url) {
+    return res.status(400).json({ error: "URL parameter is required" });
+  }
+  if (!resumeId) {
+    return res
+      .status(400)
+      .json({ error: "Resume Details parameter is required" });
+  }
 
-  res.send(`/my-pdf.pdf`)
+  const pdf = await saveAsPdf(url as string, resumeId as string);
 
-  await browser.close()
-}
+  res.setHeader(
+    "Content-Disposition",
+    `attachment; filename="generated-pdf.pdf"`
+  );
+  res.setHeader("Content-Type", "application/pdf");
+  return res.send(pdf);
+};

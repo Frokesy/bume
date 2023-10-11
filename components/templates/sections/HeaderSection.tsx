@@ -22,7 +22,7 @@ const HeaderSection: FC<HeaderProps> = ({ personalDetails }) => {
   }, [personalDetails.socialLinks]);
 
   return (
-    <div className="header bg-[rgb(27,31,36)] pl-6 text-[#fff]">
+    <div className="header bg-[#1b1f24] pl-6 text-[#fff]">
       <div className="flex justify-between pt-3">
         <div className="w-[70%] max-w-[350px] pt-6">
           <div className="border-[3px] border-b-[#ccc] w-[15%]"></div>

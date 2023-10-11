@@ -6,6 +6,7 @@ import Experience from "@/components/templates/edit/Experience";
 import PersonalDetails from "@/components/templates/edit/PersonalDetails";
 import Skills from "@/components/templates/edit/Skills";
 import { supabase } from "@/utils/supabaseClient";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { FaEye } from "react-icons/fa";
@@ -15,63 +16,52 @@ const Template = () => {
   const resumeId = router.query.slug;
   const [showTemplate, setShowTemplate] = useState(false);
   const [resumeDetails, setResumeDetails] = React.useState({
-    personalDetails: [{
+    personalDetails: {
       id: Math.floor(Math.random() * 1000),
       name: "",
       role: "",
       about: "",
-    }],
+    },
     education: [],
     contactInfo: [],
     skills: [],
     experience: [],
   });
-
-  // const [pdfUrl, setPdfUrl] = useState<string>()
-
-  // const handleDownloadPdf = async () => {
-  //   const response = await fetch('/api/pdf')
-  //   const pdfUrl = await response.text()
-  
-  //   const a = document.createElement('a')
-  //   a.href = pdfUrl
-  //   a.download = 'my-pdf.pdf'
-  //   a.click()
-  //   console.log("clicked")
-  // }
-
+    
   const saveDetails = async () => {
-      try {
-        const { data, error } = await supabase
-        .from("templates")
-        .insert([
-          {
-            resume_id: resumeId,
-            personal_details: resumeDetails.personalDetails,
-            education: resumeDetails.education,
-            contact_info: resumeDetails.contactInfo,
-            skills: resumeDetails.skills,
-            experience: resumeDetails.experience,
-          },
-        ])
-        if (error) throw error
-        if (!error) {
-          console.log(data)
-          console.log("added successfully")
-        }
-      } catch (error) {
-        console.log(error)
+    try {
+      const { data, error } = await supabase.from("templates").insert([
+        {
+          resume_id: resumeId,
+          personal_details: resumeDetails.personalDetails,
+          education: resumeDetails.education,
+          contact_info: resumeDetails.contactInfo,
+          skills: resumeDetails.skills,
+          experience: resumeDetails.experience,
+        },
+      ]);
+      if (error) throw error;
+      if (!error) {
+        console.log(data);
+        console.log("added successfully");
       }
-  }
-  
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const getEntries = (section: string, data: any) => {
     setResumeDetails({ ...resumeDetails, [section]: data });
   };
 
+  useEffect(() => {
+    localStorage.setItem("resumeId", resumeId as string);
+  }, [resumeId]);
+
   return (
     <Container>
-      <div className="lg:mt-10 lg:hidden flex lg:justify-betwee mx-auto">
-        {showTemplate ? (
+      <div className="lg:mt-10 lg:hidden flex lg:justify-between mx-auto">
+        {!showTemplate ? (
           <div className="text-[#000]">
             <Frokesy value={resumeDetails} setShowTemplate={setShowTemplate} />
           </div>
@@ -98,7 +88,7 @@ const Template = () => {
       </div>
 
       <div className="mt-10 lg:flex hidden justify-between mx-auto">
-        <div className="w-[40%]">
+        <div className="w-[40%] h-[95vh] overflow-auto">
           <PersonalDetails collectEntries={getEntries} />
           <Education collectEntries={getEntries} />
           <ContactInfo collectEntries={getEntries} />
@@ -110,9 +100,14 @@ const Template = () => {
           <Frokesy value={resumeDetails} setShowTemplate={setShowTemplate} />
         </div>
       </div>
-      <button className="font-semibold" onClick={saveDetails}>Save</button>
-      {/* <button onClick={handleDownloadPdf} className="text-[#fff]">Download PDF</button>
-      {pdfUrl && <a href={pdfUrl} download="my-pdf.pdf">Download PDF</a>} */}
+      <button className="font-semibold" onClick={saveDetails}>
+        Save
+      </button>
+      <button className="text-[#fff]">
+        <Link href="/resume/preview">
+          Preview
+        </Link>
+      </button>
     </Container>
   );
 };

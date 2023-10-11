@@ -12,7 +12,7 @@ const SkillSection: FC<Props> = ({ skills }) => {
       <ul className="grid grid-cols-1 gap-y-3 px-8">
         {skills.length !== 0 ? (
           skills.map((tab: any) => (
-            <li key={tab.id} className="list-disc font-semibold lg:text-[15px] text-[13px] capitalize">
+            <li key={tab.id} className="list-disc content-loaded font-semibold lg:text-[15px] text-[13px] capitalize">
               {tab.skill}
             </li>
           ))
