@@ -11,9 +11,9 @@ const EducationSection: FC<Props> = ({ education }) => {
       <h2 className="lg:text-[20px] text-[16px] font-bold text-[#11466d] pt-2">
         My education
       </h2>
-      {education.length !== 0 ? (
+      {education?.length !== 0 ? (
         <div className="grid grid-cols-1 gap-y-4">
-          {education.map((tab: any) => (
+          {education?.map((tab: any) => (
             <section key={tab.id}>
               <section>
                 <h2 className="uppercase font-mono lg:text-[15px] text-[13px]">

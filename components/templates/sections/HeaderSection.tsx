@@ -18,8 +18,8 @@ const HeaderSection: FC<HeaderProps> = ({ personalDetails }) => {
   const [links, setLinks] = useState([]);
 
   useEffect(() => {
-    setLinks(personalDetails.socialLinks);
-  }, [personalDetails.socialLinks]);
+    setLinks(personalDetails?.socialLinks);
+  }, [personalDetails?.socialLinks]);
 
   return (
     <div className="header bg-[#1b1f24] pl-6 text-[#fff]">
@@ -28,13 +28,13 @@ const HeaderSection: FC<HeaderProps> = ({ personalDetails }) => {
           <div className="border-[3px] border-b-[#ccc] w-[15%]"></div>
           <h2 className="lg:text-[24px] text-[16px] font-bold pt-6">
             I&apos;m{" "}
-            {personalDetails.name === ""
+            {personalDetails?.name === ""
               ? "Ayanfeoluwa Akindele"
-              : personalDetails.name}
+              : personalDetails?.name}
             , a{" "}
-            {personalDetails.role === ""
+            {personalDetails?.role === ""
               ? "Frontend Engineer"
-              : personalDetails.role}
+              : personalDetails?.role}
             .
           </h2>
 

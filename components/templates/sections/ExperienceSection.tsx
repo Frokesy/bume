@@ -11,7 +11,7 @@ const ExperienceSection: FC<Props> = ({ experience }) => {
       <h2 className="lg:text-[20px] text-[16px] font-bold text-[#11466d] pt-2">
         Past Experience
       </h2>
-      {experience.length > 0 ? (
+      {experience?.length > 0 ? (
         <div className="grid grid-cols-1 gap-y-4">
           {experience.map((exp: any) => (
             <div key={exp.id}>

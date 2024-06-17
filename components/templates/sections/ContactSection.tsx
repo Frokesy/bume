@@ -11,9 +11,9 @@ const ContactSection: FC<Props> = ({ contactInfo }) => {
       <h2 className="lg:text-[20px] text-[16px] font-bold text-[#11466d] pt-2">
         Contact Information
       </h2>
-      {contactInfo.length !== 0 ? (
+      {contactInfo?.length !== 0 ? (
         <section className="grid grid-cols-1 gap-y-3 pt-1">
-          {contactInfo.map((tab: any) => (
+          {contactInfo?.map((tab: any) => (
             <section key={tab.id}>
               <section>
                 <h2 className="uppercase lg:text-[13px] text-[11px]">{tab.meansOfContact}:</h2>

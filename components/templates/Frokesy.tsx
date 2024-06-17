@@ -22,19 +22,19 @@ const Frokesy: FC<TemplateProps> = ({ value, setShowTemplate }) => {
         </button>
       </div>
       <Layout>
-        <HeaderSection personalDetails={value.personalDetails} />
+        <HeaderSection personalDetails={value?.personalDetails} />
         <div className="flex justify-between">
           <div id="1" className="border-r w-[50%] max-w-[50%] border-[#808080] mt-6 lg:px-6 px-3">
             <div className="border-[3px] border-b-[#808080] w-[15%]"></div>
-            <AboutSection about={value.personalDetails.about} />
-            <EducationSection education={value.education} />
-            <ContactSection contactInfo={value.contactInfo} />
-            <SkillSection skills={value.skills} />
+            <AboutSection about={value?.personalDetails.about} />
+            <EducationSection education={value?.education} />
+            <ContactSection contactInfo={value?.contactInfo} />
+            <SkillSection skills={value?.skills} />
           </div>
 
           {/* Right side */}
           <div className="w-[50%] lg:px-6 pl-3 pr-1">
-            <ExperienceSection experience={value.experience} />
+            <ExperienceSection experience={value?.experience} />
           </div>
         </div>
       </Layout>
